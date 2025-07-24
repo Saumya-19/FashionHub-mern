@@ -9,10 +9,11 @@ import ChildrenClothes from './pages/ChildrenClothes';
 import SignIn from './pages/SignIn';
 import ProductDetail from './pages/ProductDetails';
 import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckOutPage';
+import CheckoutPage from './pages/CheckoutPage';
 import OrderPlaced from './pages/OrderPlaced';
 import Signup from './pages/SignUp';
 import OrderHistoryPage from './pages/OrderHistoryPage';
+
 
 export default function App() {
   return (
