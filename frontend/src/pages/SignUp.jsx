@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -20,7 +24,11 @@ export default function Signup() {
         email,
         password,
       });
-      alert(res.data.message);
+      alert(`Welcome ${res.data.username}! Registration successful.`);
+
+      
+       login(res.data);
+
       navigate("/");
     } catch (err) {
       if (err.response && err.response.data && err.response.data.error) {
@@ -57,14 +65,25 @@ export default function Signup() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <div className="relative">
         <input
-          type="password"
+           type={showPassword ? "text" : "password"}
           placeholder="Password"
           className="w-full p-2 border rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
+          />
+           
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-2 top-2 text-gray-500"
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
+        
 
         <button
           type="submit"
