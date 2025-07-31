@@ -14,12 +14,14 @@ export default function Signup() {
 
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API_URL;
+
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await axios.post(`${API}/api/auth/register`, {
         username,
         email,
         password,
